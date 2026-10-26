@@ -1,0 +1,12 @@
+{
+  "appId": "com.qualityshop.inventario",
+  "appName": "Quality Shop",
+  "webDir": "dist",
+  "ios": {
+    "contentInset": "never",
+    "backgroundColor": "#000000"
+  },
+  "android": {
+    "backgroundColor": "#000000"
+  }
+}

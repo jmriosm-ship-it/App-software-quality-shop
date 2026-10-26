@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Quality Shop</string>
+    <string name="title_activity_main">Quality Shop</string>
+    <string name="package_name">com.qualityshop.inventario</string>
+    <string name="custom_url_scheme">com.qualityshop.inventario</string>
+</resources>

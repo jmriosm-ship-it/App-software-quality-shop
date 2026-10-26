@@ -1,0 +1,29 @@
+# Dependencias y resultados de compilar (se regeneran con npm install / npm run build)
+node_modules/
+dist/
+
+# Datos de conexión locales (el de producción va en .env.production, que solo tiene valores públicos)
+.env
+.env.local
+.env.*.local
+
+# Android e iPhone: lo que se genera al compilar
+android/.gradle/
+android/build/
+android/app/build/
+android/capacitor-cordova-android-plugins/build/
+android/local.properties
+ios/App/Pods/
+ios/App/build/
+ios/DerivedData/
+
+# APK y carpetas que se entregan (pesan y se regeneran)
+entregables/
+
+# Basura del sistema y registros
+*.log
+.DS_Store
+Thumbs.db
+
+# Ajustes personales de VS Code (tienen rutas de este computador)
+.vscode/
