@@ -11,7 +11,7 @@ const ESTADOS = {
   error: 'Hubo un error',
 }
 
-export default function Ajustes({ datos, pin, onPin, onRestaurar, nube, onLegal }) {
+export default function Ajustes({ datos, pin, onPin, onRestaurar, nube, onLegal, onAyuda }) {
   const [nuevoPin, setNuevoPin] = useState('')
   const [errorPin, setErrorPin] = useState('')
 
@@ -152,6 +152,18 @@ export default function Ajustes({ datos, pin, onPin, onRestaurar, nube, onLegal 
           </button>
         )}
       </form>
+
+      <div className="seccion-titulo">
+        <h2>Ayuda</h2>
+      </div>
+      <div className="card">
+        <p className="muted">
+          Qué hace cada apartado de la app, cómo empezar y las reglas importantes para llevar bien tus cuentas.
+        </p>
+        <button className="btn-negro" onClick={onAyuda}>
+          Guía de uso
+        </button>
+      </div>
 
       <div className="seccion-titulo">
         <h2>Legal</h2>

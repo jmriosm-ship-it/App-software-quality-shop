@@ -11,6 +11,7 @@ import { VERSION_LEGAL } from './legal.js'
 import Aceptacion from './components/Aceptacion.jsx'
 import Acceso from './components/Acceso.jsx'
 import Legal from './components/Legal.jsx'
+import Ayuda from './components/Ayuda.jsx'
 import Bloqueo from './components/Bloqueo.jsx'
 import Inicio from './components/Inicio.jsx'
 import Resumen from './components/Resumen.jsx'
@@ -38,8 +39,12 @@ function legalDelEnlace() {
   return null
 }
 
+// La guía de uso también se abre con un enlace público: "…/#/ayuda"
+const ayudaDelEnlace = () => typeof location !== 'undefined' && location.hash.includes('ayuda')
+
 export default function App() {
   const [tab, setTab] = useState('resumen')
+  const [verAyuda, setVerAyuda] = useState(ayudaDelEnlace) // guía de uso abierta
   const [verLegal, setVerLegal] = useState(legalDelEnlace) // documento legal abierto: 'privacidad' | 'terminos' | 'clientes' | null
   const [legalAceptado, setLegalAceptado] = useStorage('qs_legal', '') // versión de los textos que ya se aceptó
   const [periodo, setPeriodo] = useState('mes')
@@ -274,6 +279,22 @@ export default function App() {
     )
   }
 
+  function cerrarAyuda() {
+    if (location.hash) history.replaceState(null, '', location.pathname + location.search)
+    setVerAyuda(false)
+  }
+
+  // La guía de uso se muestra sobre cualquier pantalla (sin pedir PIN ni sesión)
+  if (verAyuda) {
+    return (
+      <div className="app">
+        <main className="contenido">
+          <Ayuda onVolver={cerrarAyuda} />
+        </main>
+      </div>
+    )
+  }
+
   if (enInicio) return <Inicio onTerminar={()=> setEnInicio(false)} />
 
   // La primera vez (o si cambian los textos) hay que aceptar la política y los términos
@@ -298,7 +319,7 @@ export default function App() {
 
   // Con la nube configurada, hay que iniciar sesión (o elegir seguir sin nube) antes de usar la app
   if (nubeConfigurada && sesion === undefined) return <p className="vacio" style={{ paddingTop: 80 }}>Cargando…</p>
-  if (nubeConfigurada && !sesion && !sinNube) return <Acceso onSinNube={() => setSinNube(true)} onLegal={setVerLegal} />
+  if (nubeConfigurada && !sesion && !sinNube) return <Acceso onSinNube={() => setSinNube(true)} onLegal={setVerLegal} onAyuda={() => setVerAyuda(true)} />
 
   function nuevaVenta() {
     setPedirVenta(true)
@@ -364,6 +385,7 @@ export default function App() {
               onPin={cambiarPin}
               onRestaurar={restaurar}
               onLegal={setVerLegal}
+              onAyuda={() => setVerAyuda(true)}
               nube={{
                 configurada: nubeConfigurada,
                 correo: sesion?.user?.email || '',

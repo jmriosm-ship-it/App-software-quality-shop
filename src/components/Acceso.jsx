@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { supabase } from '../nube.js'
 
 // Inicio de sesión con el correo y la contraseña del dueño (la cuenta se crea en Supabase)
-export default function Acceso({ onSinNube, onLegal }) {
+export default function Acceso({ onSinNube, onLegal, onAyuda }) {
   const [correo, setCorreo] = useState('')
   const [clave, setClave] = useState('')
   const [error, setError] = useState('')
@@ -71,6 +71,8 @@ export default function Acceso({ onSinNube, onLegal }) {
         <button onClick={() => onLegal('privacidad')}>Privacidad</button>
         <span>·</span>
         <button onClick={() => onLegal('terminos')}>Términos</button>
+        <span>·</span>
+        <button onClick={onAyuda}>Ayuda</button>
       </p>
     </div>
   )
