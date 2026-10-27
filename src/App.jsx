@@ -274,7 +274,7 @@ export default function App() {
     )
   }
 
-  if (enInicio) return <Inicio onEntrar={() => setEnInicio(false)} onLegal={setVerLegal} />
+  if (enInicio) return <Inicio onTerminar={()=> setEnInicio(false)} />
 
   // La primera vez (o si cambian los textos) hay que aceptar la política y los términos
   if (legalAceptado !== VERSION_LEGAL) return <Aceptacion onLeer={setVerLegal} onAceptar={aceptarLegal} />

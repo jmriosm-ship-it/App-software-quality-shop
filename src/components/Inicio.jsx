@@ -1,5 +1,15 @@
-// Pantalla de bienvenida: logo y nombre del local, con el botón para entrar abajo
-export default function Inicio({ onEntrar, onLegal }) {
+import { useEffect, useRef } from 'react'
+
+// Pantalla de bienvenida: muestra el logo un momento y pasa sola a lo que sigue
+export default function Inicio({ onTerminar }) {
+  const alTerminar = useRef(onTerminar)
+  alTerminar.current = onTerminar
+
+  useEffect(() => {
+    const temporizador = setTimeout(() => alTerminar.current(), 1800)
+    return () => clearTimeout(temporizador)
+  }, [])
+
   return (
     <div className="inicio">
       <div className="inicio-centro">
@@ -7,15 +17,6 @@ export default function Inicio({ onEntrar, onLegal }) {
         <h1>Quality Shop</h1>
         <span className="label">Inventario y ventas</span>
       </div>
-
-      <button className="inicio-boton" onClick={onEntrar}>
-        Entrar
-      </button>
-      <p className="inicio-legal">
-        <button onClick={() => onLegal('privacidad')}>Privacidad</button>
-        <span>·</span>
-        <button onClick={() => onLegal('terminos')}>Términos</button>
-      </p>
     </div>
   )
 }

@@ -304,3 +304,5 @@ input, select, textarea {
 .aceptacion-lista { list-style: disc; max-width: 320px; margin: 4px 0 0; padding-left: 20px; display: grid; gap: 8px; color: #cfcfd3; font-size: 14px; line-height: 1.45; text-align: left; }
 .aceptacion-check { display: flex; gap: 12px; align-items: flex-start; max-width: 340px; margin-top: 8px; color: #cfcfd3; font-size: 13px; line-height: 1.45; text-align: left; }
 .aceptacion-check input { -webkit-appearance: checkbox; appearance: auto; flex: none; width: 22px; height: 22px; margin: 2px 0 0; accent-color: #fff; }
+.inicio-centro { animation: aparecer 0.6s ease; }
+@keyframes aparecer { from { opacity: 0; transform: scale(0.96); } to { opacity: 1; transform: none; } }
